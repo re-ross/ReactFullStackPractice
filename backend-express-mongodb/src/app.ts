@@ -1,0 +1,39 @@
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import adminRoute from "./routes/Admin";
+
+dotenv.config();
+
+console.log(process.env.DB_HOST);
+
+const app = express();
+
+app.use(cors());
+
+app.use(express.urlencoded({ extended: false }));
+
+app.use(express.json());
+
+app.use("/", adminRoute);
+
+const port = process.env.PORT || 8000;
+
+mongoose
+
+  // Use DB_HOST_DOCKER to connect to the MongoDB Database in the Docker Container
+
+  .connect(`${process.env.DB_HOST_LOCAL}`)
+
+  .then(() => {
+    app.listen(port, () =>
+      console.log(
+        `Server and database running on port ${port}, http://localhost:${port}`
+      )
+    );
+  })
+
+  .catch((err: any) => {
+    console.log(err);
+  });
