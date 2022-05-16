@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 router.get("/", getTweets);
-router.get("/:tweedId", getTweet);
+router.get("/:tweetId", getTweet);
 router.post("/tweet", postTweet);
 router.delete("/delete", deleteTweet);
 router.put("/:tweetId", updateTweet);

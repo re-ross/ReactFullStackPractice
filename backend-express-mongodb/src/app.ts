@@ -6,8 +6,6 @@ import adminRoute from "./routes/Admin";
 
 dotenv.config();
 
-console.log(process.env.DB_HOST);
-
 const app = express();
 
 app.use(cors());
